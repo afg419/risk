@@ -1,0 +1,34 @@
+<h2>Show user</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </li>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </li>
+
+  <li>
+    <strong>Bio:</strong>
+    <%= @user.bio %>
+  </li>
+
+  <li>
+    <strong>Wins:</strong>
+    <%= @user.wins %>
+  </li>
+
+  <li>
+    <strong>Losses:</strong>
+    <%= @user.losses %>
+  </li>
+
+</ul>
+<%= if @user == Risk.ApplicationHelper.current_user(@conn) do %>
+  <%= link "Edit", to: user_path(@conn, :edit, @user) %>
+<% end %>
+<%= link "Back to Users Index", to: user_path(@conn, :index) %>

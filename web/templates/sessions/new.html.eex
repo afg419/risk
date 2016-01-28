@@ -1,0 +1,12 @@
+<%= form_for @conn, sessions_path(@conn, :create), [as: :sessions],fn f -> %>
+  <div class="form-group">
+    <%= label f, :email, class: "control-label" %>
+    <%= text_input f, :email, class: "form-control" %>
+    <%= error_tag f, :email %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+
+<% end %>

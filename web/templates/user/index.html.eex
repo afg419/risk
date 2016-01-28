@@ -1,0 +1,40 @@
+<h2>Listing users</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Bio</th>
+      <th>Wins</th>
+      <th>Losses</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for user <- @users do %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.bio %></td>
+      <td><%= user.wins %></td>
+      <td><%= user.losses %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %>
+        <%= if user == Risk.ApplicationHelper.current_user(@conn) do %>
+          <%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %>
+          <%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+        <% end %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= unless Risk.ApplicationHelper.current_user(@conn) do %>
+  <%= link "Sign up", to: user_path(@conn, :new) %>
+  <br>
+  <%= link "Log in", to: sessions_path(@conn, :new) %>
+<% end %>
