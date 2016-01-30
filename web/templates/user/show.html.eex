@@ -28,7 +28,8 @@
   </li>
 
 </ul>
-<%= if @user == Risk.ApplicationHelper.current_user(@conn) do %>
-  <%= link "Edit", to: user_path(@conn, :edit, @user) %>
-<% end %>
+  <%= if @user == Risk.ApplicationHelper.current_user(@conn) do %>
+    <%= link "Edit", to: user_path(@conn, :edit, @user) %>
+  <% end %>
+<br>
 <%= link "Back to Users Index", to: user_path(@conn, :index) %>

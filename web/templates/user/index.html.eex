@@ -13,6 +13,7 @@
     </tr>
   </thead>
   <tbody>
+    
 <%= for user <- @users do %>
     <tr>
       <td><%= user.name %></td>
@@ -26,6 +27,8 @@
         <%= if user == Risk.ApplicationHelper.current_user(@conn) do %>
           <%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %>
           <%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+        <%= else %>
+          <%= link "Challenge!", to: game_path(@conn, :new, user_id: user.id), class: "btn btn-default btn-xs" %>
         <% end %>
       </td>
     </tr>

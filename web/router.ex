@@ -24,6 +24,7 @@ defmodule Risk.Router do
     get "/logout", SessionsController, :destroy
 
     resources "/users", UserController
+    resources "/game", GameController, only: [:new, :create]
   end
 
   # Other scopes may use custom stacks.

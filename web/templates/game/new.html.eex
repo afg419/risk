@@ -1,0 +1,5 @@
+<h1>NEW GAME</h1>
+
+<h3>Player 1: <%= @p1.name %></h3>
+<h3>Player 2: <%= @p2.name %></h3>
+<%= link "Start Game", to: game_path(@conn, :create, user_id: @p2.id), method: :post, class: "btn btn-default btn-xs" %>
