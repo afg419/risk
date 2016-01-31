@@ -1,2 +1,4 @@
 <h1>RISK</h1>
-<h3> <%=Enum.at(Enum.map(@match.users, fn user -> user.name end), 0) %> vs <%= Enum.at(Enum.map(@match.users, fn user -> user.name end), 1)%> </h3>
+<h2> <%=@match.title%> </h2>
+<h3> <%=Enum.at(Enum.map(@match.users, fn user -> user.name end), 0) %> vs
+<%= Enum.at(Enum.map(@match.users, fn user -> user.name end), 1)%> </h3>

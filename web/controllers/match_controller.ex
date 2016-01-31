@@ -13,11 +13,14 @@ defmodule Risk.MatchController do
           p2: Repo.get(User, id))
   end
 
-  def create(conn, %{"user_id" => id}) do
+  def create(conn, %{"user_id" => id, "match" => %{"title" => title}}) do
+    # %{"_csrf_token" => "bH8UV3dxfnMIA2M0RHYcHRoTNV1pEAAA++a695+5Au1Y7YEZiEE/ZQ==",
+    #   "_utf8" => "✓", "match" => %{"title" => "XXXXXXXX"}, "user_id" => "2"}
+
     p1_id = ApplicationHelper.current_user(conn).id
     {p2_id, _} = Integer.parse(id)
 
-    match = Repo.insert!(%Match{title: "title #{p1_id} vs #{p2_id}"})
+    match = Repo.insert!(%Match{title: "#{title}"})
 
     Repo.insert!(%MatchUser{user_id: p1_id, match_id: match.id })
     Repo.insert!(%MatchUser{user_id: p2_id, match_id: match.id })

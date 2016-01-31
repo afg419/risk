@@ -1,7 +1,6 @@
 <h2>Show user</h2>
 
 <ul>
-
   <li>
     <strong>Name:</strong>
     <%= @user.name %>
@@ -27,6 +26,12 @@
     <%= @user.losses %>
   </li>
 
+  <li><strong>Matches:</strong><ul>
+    <%= for match <- @user.matches do %>
+      <li><%= link "#{match.title}", to: match_path(@conn, :show, match) %></li>
+    <% end %>
+    </ul>
+  </li>
 </ul>
   <%= if @user == Risk.ApplicationHelper.current_user(@conn) do %>
     <%= link "Edit", to: user_path(@conn, :edit, @user) %>
