@@ -1,4 +1,15 @@
-<h1>RISK</h1>
-<h2> <%=@match.title%> </h2>
-<h3> <%=Enum.at(Enum.map(@match.users, fn user -> user.name end), 0) %> vs
+<h2> <%=@match.title%> | <%=Enum.at(Enum.map(@match.users, fn user -> user.name end), 0) %> vs
 <%= Enum.at(Enum.map(@match.users, fn user -> user.name end), 1)%> </h3>
+
+<p>
+  Current Player: <%= @current_player.name  %>
+</p>
+
+<p>
+  Current Counter: <%= @match.counter %>
+  <%= if Risk.ApplicationHelper.current_user(@conn) == @current_player do %>
+    <p><%= link "Take Move", to: match_path(@conn, :edit, @match)%></p>
+  <%= else %>
+    <p> Waiting on opponent's turn </p>
+  <% end %>
+</p>

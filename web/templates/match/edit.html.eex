@@ -1,0 +1,22 @@
+<h2> <%=@match.title%> | <%=Enum.at(Enum.map(@match.users, fn user -> user.name end), 0) %> vs
+<%= Enum.at(Enum.map(@match.users, fn user -> user.name end), 1)%> </h3>
+
+<p>
+  Current Player: <%= @current_player.name  %>
+</p>
+
+<p>
+  Current Counter: <%= @match.counter %>
+</p>
+
+<%= form_for @changeset, match_path(@conn, :update, @match), fn f -> %>
+  <div class="form-group">
+    <%= label f, :counter, class: "control-label" %>
+    <%= number_input f, :counter, class: "form-control" %>
+    <%= error_tag f, :counter %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Take turn", class: "btn btn-primary" %>
+  </div>
+<% end %>
