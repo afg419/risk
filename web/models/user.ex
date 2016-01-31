@@ -8,6 +8,9 @@ defmodule Risk.User do
     field :wins, :integer
     field :losses, :integer
 
+    has_many :match_users, Risk.MatchUser
+    has_many :matches, through: [:match_users, :match]
+
     timestamps
   end
 
