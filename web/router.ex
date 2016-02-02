@@ -16,7 +16,7 @@ defmodule Risk.Router do
   scope "/", Risk do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", UserController, :index
     get "/hello", HelloController, :index
     get "/hello/:messenger", HelloController, :show
     get "/login", SessionsController, :new

@@ -24,11 +24,13 @@
 
       <td class="text-right">
         <%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %>
-        <%= if user == Risk.ApplicationHelper.current_user(@conn) do %>
+        <%= cond do %>
+        <%= user == Risk.ApplicationHelper.current_user(@conn) -> %>
           <%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %>
           <%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-        <%= else %>
+        <%= Risk.ApplicationHelper.current_user(@conn) -> %>
           <%= link "Challenge!", to: match_path(@conn, :new, user_id: user.id), class: "btn btn-default btn-xs" %>
+        <%= true -> %>
         <% end %>
       </td>
     </tr>
